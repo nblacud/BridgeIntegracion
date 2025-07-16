@@ -30,11 +30,21 @@ class BridgeClient:
     def __init__(self, config: Config):
         self.config = config
         self.session = requests.Session()
+        
+        # Set headers with proper encoding
         self.session.headers.update({
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Api-Key': config.api_key
+            'Accept': 'application/json'
         })
+        
+        # Set API key header with proper encoding handling
+        api_key = config.api_key
+        if api_key:
+            # Clean API key of any non-ASCII characters that might cause encoding issues
+            api_key = api_key.replace('●', '').replace('•', '').strip()  # Remove any masking characters
+            # Ensure we have a clean ASCII string
+            api_key = ''.join(char for char in api_key if ord(char) < 128)
+            self.session.headers['Api-Key'] = api_key
         
         # Configure retries
         self.max_retries = 3

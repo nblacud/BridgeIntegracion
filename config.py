@@ -11,7 +11,7 @@ class Config:
     """Configuration class for Bridge API client"""
     
     api_key: str
-    environment: str = 'sandbox'
+    environment: str = 'production'
     debug: bool = False
     
     @property
@@ -39,13 +39,13 @@ class Config:
         
         return cls(
             api_key=api_key,
-            environment=os.getenv('BRIDGE_ENVIRONMENT', 'sandbox'),
+            environment=os.getenv('BRIDGE_ENVIRONMENT', 'production'),
             debug=os.getenv('BRIDGE_DEBUG', 'false').lower() == 'true'
         )
 
 # Default configuration
 DEFAULT_CONFIG = Config(
     api_key=os.getenv('BRIDGE_API_KEY', ''),
-    environment=os.getenv('BRIDGE_ENVIRONMENT', 'sandbox'),
+    environment=os.getenv('BRIDGE_ENVIRONMENT', 'production'),
     debug=os.getenv('BRIDGE_DEBUG', 'false').lower() == 'true'
 )

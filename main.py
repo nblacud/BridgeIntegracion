@@ -28,7 +28,7 @@ logger = setup_logger(__name__)
 
 @click.group()
 @click.option('--api-key', envvar='BRIDGE_API_KEY', help='Bridge API Key')
-@click.option('--environment', default='sandbox', type=click.Choice(['sandbox', 'production']), help='Environment to use')
+@click.option('--environment', default='production', type=click.Choice(['sandbox', 'production']), help='Environment to use')
 @click.option('--debug', is_flag=True, help='Enable debug logging')
 @click.pass_context
 def cli(ctx, api_key: Optional[str], environment: str, debug: bool):
