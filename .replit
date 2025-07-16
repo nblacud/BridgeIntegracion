@@ -24,6 +24,10 @@ args = "bridge_api_cli"
 task = "workflow.run"
 args = "Bridge API Interactive"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Bridge API Demo"
+
 [[workflows.workflow]]
 name = "Bridge API CLI"
 author = "agent"
@@ -70,3 +74,11 @@ print('  python main.py wallets --help')
 print()
 print('The application is ready to use once you have a valid API key.')
 \""""
+
+[[workflows.workflow]]
+name = "Bridge API Demo"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python demo.py"
