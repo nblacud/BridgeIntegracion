@@ -1,0 +1,37 @@
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["libxcrypt"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Bridge API CLI"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "bridge_api_cli"
+
+[[workflows.workflow]]
+name = "Bridge API CLI"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pip install requests pydantic click python-dotenv && python main.py --help"
+
+[[workflows.workflow]]
+name = "bridge_api_cli"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pip install requests pydantic click python-dotenv && python main.py --help"
