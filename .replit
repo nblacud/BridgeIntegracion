@@ -20,6 +20,10 @@ args = "Bridge API CLI"
 task = "workflow.run"
 args = "bridge_api_cli"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Bridge API Interactive"
+
 [[workflows.workflow]]
 name = "Bridge API CLI"
 author = "agent"
@@ -35,3 +39,34 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "pip install requests pydantic click python-dotenv && python main.py --help"
+
+[[workflows.workflow]]
+name = "Bridge API Interactive"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = """
+python -c \"
+import sys
+import os
+from main import cli
+
+print('=== Bridge API CLI Application ===')
+print('Available commands:')
+print('1. status - Check API connection')
+print('2. customers list - List customers')
+print('3. customers create-tos-link - Create Terms of Service link')
+print('4. wallets list [customer_id] - List wallets')
+print('5. transfers list - List transfers')
+print()
+print('To use the application, you need a valid BRIDGE_API_KEY.')
+print('Current API key status:', 'SET' if os.getenv('BRIDGE_API_KEY') else 'NOT SET')
+print()
+print('Example usage:')
+print('  python main.py status')
+print('  python main.py customers --help')
+print('  python main.py wallets --help')
+print()
+print('The application is ready to use once you have a valid API key.')
+\""""
