@@ -24,6 +24,7 @@ class PaymentRail(str, Enum):
     ETHEREUM = "ethereum"
     ARBITRUM = "arbitrum"
     BASE = "base"
+    SOLANA = "solana"
 
 class Currency(str, Enum):
     USD = "usd"
