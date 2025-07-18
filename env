@@ -1,0 +1,9 @@
+# Bridge API Configuration
+BRIDGE_API_KEY=
+
+BRIDGE_ENVIRONMENT=sandbox
+BRIDGE_DEBUG=false
+
+# Optional: Webhook configuration
+WEBHOOK_URL=https://your-app.com/webhooks/bridge
+WEBHOOK_SECRET=your_webhook_secret_here
